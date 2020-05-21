@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-//import { Button, Grid } from "@material-ui/core";
+import { Grid, Card, CardContent, Typography } from "@material-ui/core";
+import BoxCard from "./BoxCard";
 
 const DeviceView = (props) => {
   const boxesEndpoint = "http://localhost:3001/api/boxes";
@@ -22,7 +23,23 @@ const DeviceView = (props) => {
     updateBoxes();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return <div>placeholder device view screen</div>;
+  return (
+    <Grid container spacing={2} justify="center">
+      {boxes.length === 0 ? (
+        <Card>
+          <CardContent>
+            <Typography variant="h6">No Devices connected</Typography>
+          </CardContent>
+        </Card>
+      ) : (
+        boxes.map((box, index) => (
+          <Grid item key={index}>
+            <BoxCard box={box} />
+          </Grid>
+        ))
+      )}
+    </Grid>
+  );
 };
 
 export default DeviceView;
