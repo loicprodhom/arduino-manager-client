@@ -1,7 +1,6 @@
 import {
   Card,
   CardContent,
-  Typography,
   CardHeader,
   Avatar,
   CardActions,
@@ -51,9 +50,9 @@ const BoxCard = (props) => {
       />
       <CardContent>
         {box.type === "LCD" ? (
-          <LCDBoxDataDisplay />
+          <LCDBoxDataDisplay box={box} />
         ) : box.type === "Relay" ? (
-          <RelayBoxDataDisplay />
+          <RelayBoxDataDisplay box={box} />
         ) : (
           <UnknownData />
         )}
@@ -73,11 +72,11 @@ const BoxCard = (props) => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           {box.type === "LCD" ? (
-            <LCDBoxCommands />
+            <LCDBoxCommands box={box} updateBoxes={props.updateBoxes} />
           ) : box.type === "Relay" ? (
-            <RelayBoxCommands />
+            <RelayBoxCommands box={box} updateBoxes={props.updateBoxes} />
           ) : (
-            <UnknownCommands />
+            <UnknownCommands box={box} />
           )}
         </CardContent>
       </Collapse>

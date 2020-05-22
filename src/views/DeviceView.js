@@ -34,7 +34,7 @@ const DeviceView = (props) => {
       ) : (
         boxes.map((box, index) => (
           <Grid item key={index}>
-            <BoxCard box={box} />
+            <BoxCard box={box} updateBoxes={updateBoxes} />
           </Grid>
         ))
       )}
